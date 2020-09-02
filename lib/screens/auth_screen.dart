@@ -21,7 +21,7 @@ class AuthScreen extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage("images/auth_cover.webp"),
                 fit: BoxFit.cover,
-                alignment: Alignment.topLeft
+                alignment: Alignment.topCenter
             )
         ),
         child: Column(
@@ -45,9 +45,7 @@ class AuthScreen extends StatelessWidget {
                   fontSize: 50
               ),
             ),
-            Container(
-//              width: screenWidth,
-              child: Row(
+            Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Expanded(
@@ -89,7 +87,6 @@ class AuthScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
             SizedBox(
               height: defaultSize,
             ),
