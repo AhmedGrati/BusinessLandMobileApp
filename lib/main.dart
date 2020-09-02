@@ -1,16 +1,33 @@
 import 'package:businessland_app/screens/auth_screen.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+
 void main() {
 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Scaffold(
-      body: SafeArea(
-        child: AuthScreen(),
-      ),
-    ),
-  ));
+  runApp(
+//    DevicePreview(
+//      enabled: !kReleaseMode,
+//      builder: (context) => BusinessLandApp(),
+//    )
+  BusinessLandApp()
+  );
 }
+
+class BusinessLandApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+//      locale: DevicePreview.of(context).locale,
+//      builder: DevicePreview.appBuilder,
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: SafeArea(
+            child: AuthScreen()
+        ),
+      ),
+    );
+  }
+}
+
 
