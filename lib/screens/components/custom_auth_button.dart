@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class CustomAuthButton extends StatelessWidget {
+  final String buttonContent;
+  CustomAuthButton({@required this.buttonContent});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +14,7 @@ class CustomAuthButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Text(
-          'Login to your Account!',
+          buttonContent,
           textAlign: TextAlign.center,
           style: GoogleFonts.rajdhani(
               color: Colors.white,

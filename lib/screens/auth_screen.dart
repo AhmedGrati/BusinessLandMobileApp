@@ -1,8 +1,9 @@
-import 'package:businessland_app/widgets/register_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../size_config.dart';
+import 'components/register_widget.dart';
 
 class AuthScreen extends StatelessWidget {
   @override
@@ -12,11 +13,8 @@ class AuthScreen extends StatelessWidget {
     print(defaultSize);
     return SingleChildScrollView(
       child:Container(
-        height:defaultSize * 105,
-        padding: EdgeInsets.all(
-            16
-        ),
-        width: double.infinity,
+        padding: EdgeInsets.all(16),
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("images/auth_cover.webp"),

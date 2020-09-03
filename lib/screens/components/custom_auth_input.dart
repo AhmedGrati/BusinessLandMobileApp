@@ -2,6 +2,9 @@ import 'package:businessland_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class CustomAuthInput extends StatelessWidget {
+  CustomAuthInput({@required this.labelText , this.isObscure});
+  final String labelText;
+  final bool isObscure;
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -11,7 +14,7 @@ class CustomAuthInput extends StatelessWidget {
           fontWeight: FontWeight.bold
       ),
       keyboardType: TextInputType.emailAddress,
-      obscureText: true,
+      obscureText: this.isObscure,
       decoration: kAuthTextFieldsDecoration.copyWith(
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
@@ -25,6 +28,7 @@ class CustomAuthInput extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(16.0)
         ),
+          labelText: this.labelText
       ),
     );
   }
