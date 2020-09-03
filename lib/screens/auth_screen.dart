@@ -23,7 +23,7 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2)
+      duration: Duration(seconds: 1)
     );
     print(_controller);
     _animation = Tween(

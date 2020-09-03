@@ -7,12 +7,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../size_config.dart';
 import 'custom_auth_button.dart';
+import 'gender_auth_widget.dart';
 class RegisterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
     return  AuthCardWidget(
-      height:  defaultSize * 100,
+      height:  defaultSize * 115,
       content: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -76,6 +77,10 @@ class RegisterWidget extends StatelessWidget {
               labelText: "Last Name",
               isObscure: false,
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0 , vertical: 10.0),
+            child: GenderAuthWidget(),
           ),
           CustomAuthButton(
             buttonContent: "Register Now!",
