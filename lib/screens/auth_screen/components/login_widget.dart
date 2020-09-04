@@ -1,4 +1,4 @@
-import 'package:businessland_app/screens/components/reset_password_dialog.dart';
+import 'package:businessland_app/screens/auth_screen/components/reset_password_dialog.dart';
 import 'package:businessland_app/size_config.dart';
 import 'auth_card_widget.dart';
 import 'package:flutter/material.dart';

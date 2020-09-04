@@ -1,3 +1,7 @@
+import 'package:businessland_app/models/gender.dart';
+import 'package:businessland_app/models/user.dart';
+
+import '../../../size_config.dart';
 import 'auth_card_widget.dart';
 import 'custom_auth_input.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +9,9 @@ import 'package:flutter_signin_button/button_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../size_config.dart';
+
 import 'custom_auth_button.dart';
-import '../../models/gender.dart';
-import '../../models/user.dart';
+
 class RegisterWidget extends StatefulWidget {
   @override
   _RegisterWidgetState createState() => _RegisterWidgetState();

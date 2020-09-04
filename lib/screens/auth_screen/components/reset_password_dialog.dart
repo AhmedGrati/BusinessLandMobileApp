@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../size_config.dart';
+import '../../../size_config.dart';
 import 'custom_auth_input.dart';
 
 class ResetPasswordDialog extends StatefulWidget {

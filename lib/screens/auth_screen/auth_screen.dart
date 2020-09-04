@@ -1,11 +1,12 @@
 
-import 'package:businessland_app/screens/auth_stage.dart';
-import 'package:businessland_app/screens/components/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../size_config.dart';
-import 'components/register_widget.dart';
+import '../../size_config.dart';
+import 'auth_stage.dart';
+import 'package:businessland_app/screens/auth_screen/components/login_widget.dart';
+import 'package:businessland_app/screens/auth_screen/components/register_widget.dart';
+
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -178,12 +179,7 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
                 ? FadeTransition(
               opacity: _animation,
               child: LoginWidget(),
-            ) :
-                  (stage == AuthStage.Register
-                      ? FadeTransition(
-                    opacity: _animation,
-                    child: RegisterWidget(),
-                  ) : null)// todo add Forgot password widget
+            ) :RegisterWidget()
           ],
         ),
       )
