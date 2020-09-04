@@ -20,13 +20,34 @@ class UserService {
         final User user = User.fromJson(jsonData['user']);
         return ApiResponse<User>(data: user);
       }else{
-        return ApiResponse<User>(error: true, errorMessage: 'An error occured');
+        return ApiResponse<User>(error: true, errorMessage: 'Your email and password are invalid!');
       }
     }).catchError((error){
-      print(error.toString());
-      return ApiResponse<User>(error: true, errorMessage: 'An error occured');
-    }
-      );
+        print(error.toString());
+        return ApiResponse<User>(error: true, errorMessage: 'An error occured. Please retry later.');
+      }
+     );
   }
 
+  Future<ApiResponse<bool>> sendResetPasswordEmail(String email) {
+    print("email : $email");
+    final String url = GlobalConfig.API_URL+'/api/user/sendEmail?email=$email';
+    print(url);
+    return  http.get(
+      url,
+      headers: GlobalConfig.headers
+      ).then((response) {
+        if(response.statusCode == 200) {
+          print('email sent');
+          return ApiResponse<bool>(data: true);
+        }else{
+          print('else email sent');
+          return ApiResponse<bool>(error : true , data: false,errorMessage: "Your email is invalid! Please check it.");
+        }
+      }
+    ).catchError((error) {
+      print('error sent');
+      return ApiResponse<bool>(error : true , data: false,errorMessage: "An error occured. Please retry later.");
+    });
+  }
 }

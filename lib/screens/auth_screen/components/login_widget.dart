@@ -53,7 +53,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     fToast.showToast(
       child: toast,
-      gravity: ToastGravity.BOTTOM,
+      gravity: ToastGravity.TOP_LEFT,
       toastDuration: Duration(seconds: 2),
     );
   }
@@ -152,28 +152,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 return;
                 }
                 _key.currentState.save();
-                final result = await this.userService.login(LoginModel(
-                  email: _email,
-                  password: _password
-                ));
-                if(!result.error) {
-                  _showToast(
-                      "Login Attempted Successfully",
-                      Colors.green,
-                      Icons.check
-                  );
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen())
-                  );
-                }else{
-                  print('false data');
-                  _showToast(
-                    "${result.errorMessage}",
-                    Colors.red,
-                    Icons.error
-                  );
-                }
+                loginUser();
               },
             ),
             SizedBox(
@@ -218,5 +197,30 @@ class _LoginWidgetState extends State<LoginWidget> {
         ),
       ),
     );
+  }
+
+  void loginUser() async {
+    final result = await this.userService.login(LoginModel(
+        email: _email,
+        password: _password
+    ));
+    if(!result.error) {
+      _showToast(
+          "Login Attempted Successfully",
+          Colors.green,
+          Icons.check
+      );
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen())
+      );
+    }else{
+      print('false data');
+      _showToast(
+          "${result.errorMessage}",
+          Colors.red,
+          Icons.error
+      );
+    }
   }
 }
