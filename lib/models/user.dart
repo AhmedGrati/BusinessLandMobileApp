@@ -1,10 +1,13 @@
 import 'gender.dart';
-
+import 'package:json_annotation/json_annotation.dart';
 import 'role.dart';
 
+part 'user.g.dart';
+
+@JsonSerializable()
 class User {
 
-  String id;
+  String  id;
   String username;
   String email;
   String firstName;
@@ -29,5 +32,9 @@ class User {
     this.age,
     this.resetToken
   });
+
+  factory User.fromJson(Map<String, dynamic> item) => _$UserFromJson(item);
+
+  Map<String,dynamic> toJson() => _$UserToJson(this);
 
 }
