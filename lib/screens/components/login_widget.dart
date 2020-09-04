@@ -53,9 +53,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                   if(value.isEmpty) {
                     return 'Email is required';
                   }
+                  if (!RegExp(
+                      r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                      .hasMatch(value)) {
+                    return 'Please enter a valid email Address';
+                  }
+                  return null;
                 },
                 saveFunction: (String value) {
-                  _password = value;
+                  _email = value;
                 },
               ),
             ),
@@ -67,9 +73,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                 inputType: TextInputType.text,
                 validator: (String value) {
                   if(value.isEmpty) {
-                    print("empty");
                     return 'Password is required';
                   }
+                  if(value.length < 5) {
+                    return 'Password should have at least 5 characters';
+                  }
+                  return null;
                 },
                 saveFunction: (String value) {
                   _password = value;

@@ -1,6 +1,5 @@
 
 import 'package:businessland_app/screens/auth_stage.dart';
-import 'package:businessland_app/screens/components/card_fade_in_animation.dart';
 import 'package:businessland_app/screens/components/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

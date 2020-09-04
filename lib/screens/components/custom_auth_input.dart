@@ -2,12 +2,13 @@ import 'package:businessland_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class CustomAuthInput extends StatelessWidget {
-  CustomAuthInput({@required this.labelText , this.isObscure , this.inputType , this.validator , this.saveFunction});
+  CustomAuthInput({@required this.labelText , this.isObscure , this.inputType , this.validator , this.saveFunction , this.changeFunction});
   final String labelText;
   final bool isObscure;
   final TextInputType inputType;
   final Function validator;
   final Function saveFunction;
+  final Function changeFunction;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -47,7 +48,7 @@ class CustomAuthInput extends StatelessWidget {
       ),
       validator: this.validator,
       onSaved: this.saveFunction,
-
+      onChanged: changeFunction,
     );
   }
 }
