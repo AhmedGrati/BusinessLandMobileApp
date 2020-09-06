@@ -1,4 +1,5 @@
 import 'package:businessland_app/screens/auth_screen/auth_screen.dart';
+import 'package:businessland_app/screens/splash_screen/splash_screen.dart';
 import 'package:businessland_app/services_set_up.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
@@ -25,7 +26,7 @@ class BusinessLandApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SafeArea(
-            child: AuthScreen()
+            child: SplashScreen()
         ),
       ),
     );

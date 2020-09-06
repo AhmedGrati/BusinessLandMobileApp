@@ -50,4 +50,21 @@ class UserService {
       return ApiResponse<bool>(error : true , data: false,errorMessage: "An error occured. Please retry later.");
     });
   }
+  Future<ApiResponse<bool>> registerUser(User user) {
+    final String url = GlobalConfig.API_URL+'/api/user/register';
+    return http.post(
+      url,
+      headers:GlobalConfig.headers,
+      body:json.encode(user.toJson())
+    ).then((response) {
+      if(response.statusCode == 200) {
+        return ApiResponse<bool>(data:true);
+      }else{
+        return ApiResponse<bool>(error: true , data:false , errorMessage: "Username or Email already exists!");
+      }
+    }
+    ).catchError((error) {
+      return ApiResponse<bool>(error : true , data: false,errorMessage: "An error occured. Please retry later.");
+    });
+  }
 }

@@ -1,5 +1,10 @@
 import 'package:businessland_app/models/gender.dart';
+import 'package:businessland_app/models/login_model.dart';
 import 'package:businessland_app/models/user.dart';
+import 'package:businessland_app/screens/home_screen/home_screen.dart';
+import 'package:businessland_app/services/user_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../size_config.dart';
 import 'auth_card_widget.dart';
@@ -18,20 +23,22 @@ class RegisterWidget extends StatefulWidget {
 }
 
 class _RegisterWidgetState extends State<RegisterWidget> {
+  FToast fToast;
   Gender _gender = Gender.male;
+  UserService get userService => GetIt.I<UserService>();
+
+  GlobalKey<FormState> _key = GlobalKey<FormState>();
+  double defaultSize = SizeConfig.defaultSize;
+  String _email;
+  String _password;
+  String _firstName;
+  String _lastName;
+  int _age;
+  String _passwordConfirmation;
+  String _username;
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> _key = GlobalKey<FormState>();
-    double defaultSize = SizeConfig.defaultSize;
-    String _email;
-    String _password;
-    String _firstName;
-    String _lastName;
-    int _age;
-    String _passwordConfirmation;
-    String _username;
-
-
+    fToast = FToast(context);
     return  AuthCardWidget(
       height:  defaultSize * 144,
       content: Form(
@@ -266,7 +273,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     lastName: _lastName,
                   );
                   print(user.username);
-
+                  this.registerUser(user);
                 },
             ),
             SizedBox(
@@ -311,5 +318,67 @@ class _RegisterWidgetState extends State<RegisterWidget> {
         ),
       ),
     );
+  }
+
+  _showToast(String content , Color backgroundColor , IconData icon) {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: backgroundColor,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon ,color: Colors.white),
+          SizedBox(
+            width: 12.0,
+          ),
+          Text(content ,
+            style: GoogleFonts.rajdhani(
+                color: Colors.white
+            ),
+          ),
+        ],
+      ),
+    );
+
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.TOP_LEFT,
+      toastDuration: Duration(seconds: 2),
+    );
+  }
+  void loginUser() async {
+    final result = await this.userService.login(LoginModel(
+        email: _email,
+        password: _password
+    ));
+    if(!result.error) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen())
+      );
+    }else{
+      print('false data');
+    }
+  }
+
+  void registerUser(User user) async {
+    final result = await this.userService.registerUser(user);
+    if(!result.error) {
+      _showToast(
+          "Added successfully!",
+          Colors.green,
+          Icons.check,
+      );
+      loginUser();
+    }else{
+      _showToast(
+          "${result.errorMessage}",
+          Colors.red,
+          Icons.error,
+      );
+    }
   }
 }

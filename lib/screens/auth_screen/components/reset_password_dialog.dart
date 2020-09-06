@@ -193,8 +193,8 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                     Text('Processing ...' ,
                       textAlign: TextAlign.end,
                       style: GoogleFonts.rajdhani(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold
                       ),
                     ),
                     Image.asset("images/loading.gif" ,
@@ -206,7 +206,7 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
               ),
             ),
           );
-    }) : Text('');
+        }) : Text('');
     final result = await this.userService.sendResetPasswordEmail(_email);
     Navigator.pop(context);
     if(!result.error) {
@@ -222,7 +222,7 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
           "${result.errorMessage}",
           Colors.red,
           Icons.error,
-        2
+          2
       );
     }
   }
