@@ -2,9 +2,10 @@ import 'package:businessland_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class CustomAuthInput extends StatelessWidget {
-  CustomAuthInput({@required this.labelText , this.isObscure , this.inputType , this.validator , this.saveFunction , this.changeFunction});
+  CustomAuthInput({@required this.labelText , this.isObscure , this.inputType , this.validator , this.saveFunction , this.changeFunction , this.fillColor});
   final String labelText;
   final bool isObscure;
+  final Color fillColor;
   final TextInputType inputType;
   final Function validator;
   final Function saveFunction;
@@ -20,6 +21,7 @@ class CustomAuthInput extends StatelessWidget {
       keyboardType: inputType,
       obscureText: this.isObscure,
       decoration: kAuthTextFieldsDecoration.copyWith(
+        fillColor: this.fillColor,
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Colors.red,

@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("images/logo.png"),
+              Image.asset("images/logo.webp"),
               SizedBox(height: defaultSize * 3,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
               Container(
                 height: defaultSize * 10,
                 child: Image.asset(
-                    "images/loading-splash.gif",
+                    "images/loading-splash.webp",
                 ),
               )
             ],

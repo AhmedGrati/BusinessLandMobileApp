@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-const kN = 16.0;
+
+
+
+Color kPrimaryLightModeColor = Colors.white;
+Color kSecondaryLightModeColor = Color(0xff1D2333);
+Color kButtonLightModeColor = Color(0xff615dfa);
+
+Color kPrimaryDarkModeColor = Color(0xff1D2333);
+Color kSecondaryDarkModeColor = Colors.white;
+Color kButtonDarkModeColor = Color(0xff7750F8);
+
 const kAuthTextFieldsDecoration = InputDecoration(
   errorBorder: OutlineInputBorder(
     borderSide: BorderSide(

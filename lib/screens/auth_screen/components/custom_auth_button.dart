@@ -1,15 +1,19 @@
+import 'package:businessland_app/state_management_blocks/mode_block.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 class CustomAuthButton extends StatelessWidget {
   final String buttonContent;
   final Function pressFunction;
-  CustomAuthButton({@required this.buttonContent , this.pressFunction });
+  final Color color;
+  CustomAuthButton({@required this.buttonContent , this.pressFunction , this.color });
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
       decoration: BoxDecoration(
-          color: Color(0xff7750F8),
+          color: this.color,
           borderRadius: BorderRadius.circular(20.0)
       ),
       child:ClipRRect(
