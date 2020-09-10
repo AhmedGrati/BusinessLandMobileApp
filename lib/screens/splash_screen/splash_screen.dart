@@ -16,10 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateAuth() {
-    Navigator.pushReplacement(context,
-      MaterialPageRoute(
-        builder: (context) => AuthScreen())
-      );
+    Navigator.of(context).pushNamed('/auth');
   }
 
   @override

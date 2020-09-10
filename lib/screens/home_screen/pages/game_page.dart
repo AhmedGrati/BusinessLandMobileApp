@@ -47,7 +47,7 @@ class GameCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
     return Container(
-      height: defaultSize * 39,
+      height: defaultSize * 42,
       padding: EdgeInsets.all(16.0),
       child: Card(
         color: cardColor,

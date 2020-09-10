@@ -225,10 +225,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           Colors.green,
           Icons.check
       );
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen())
-      );
+      Navigator.of(context).pushNamed('/home');
     }else{
       print('false data');
       _showToast(

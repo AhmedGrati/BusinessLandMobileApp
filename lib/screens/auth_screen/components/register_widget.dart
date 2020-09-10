@@ -381,10 +381,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
         password: _password
     ));
     if(!result.error) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen())
-      );
+      Navigator.of(context).pushNamed('/home');
     }else{
       print('false data');
     }
