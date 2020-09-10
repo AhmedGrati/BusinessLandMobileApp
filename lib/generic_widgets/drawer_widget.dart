@@ -30,7 +30,7 @@ class DrawerWidget extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: CircleAvatar(
-                                  backgroundImage: AssetImage("images/male.png"),
+                                  backgroundImage: AssetImage("images/male.webp"),
                                 ),
                               ),
                               Column(

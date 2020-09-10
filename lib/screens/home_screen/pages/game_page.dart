@@ -1,7 +1,10 @@
+import 'package:businessland_app/generic_widgets/page_header.dart';
 import 'package:businessland_app/screens/auth_screen/components/custom_auth_button.dart';
 import 'package:businessland_app/state_management_blocks/mode_block.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../size_config.dart';
 class GamePage extends StatelessWidget {
   final Color secondaryColor , cardColor , primaryColor;
   GamePage({this.secondaryColor , this.cardColor , this.primaryColor});
@@ -14,7 +17,12 @@ class GamePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                GamePageHeader(),
+                PageHeader(
+                  title: 'Games',
+                  subTitle: 'Join A Game And Enjoy',
+                  bgImage: 'images/games-bg.webp',
+                  bgIcon: 'images/games-icon.webp',
+                ),
                 GameCard(cardColor: cardColor, secondaryColor: secondaryColor),
                 GameCard(cardColor: cardColor, secondaryColor: secondaryColor),
                 GameCard(cardColor: cardColor, secondaryColor: secondaryColor)
@@ -37,8 +45,9 @@ class GameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double defaultSize = SizeConfig.defaultSize;
     return Container(
-      height: 330,
+      height: defaultSize * 39,
       padding: EdgeInsets.all(16.0),
       child: Card(
         color: cardColor,
@@ -51,14 +60,14 @@ class GameCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: 100.0,
+              height: defaultSize * 11.6,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15.0),
                     topRight: Radius.circular(15.0)
                   ),
                   image: DecorationImage(
-                    image: AssetImage("images/01.jpg"),
+                    image: AssetImage("images/01.webp"),
                     fit: BoxFit.cover
                   )
                 ),
@@ -72,7 +81,7 @@ class GameCard extends StatelessWidget {
                 ),
               textAlign: TextAlign.center,
               ),
-            SizedBox(height: 10.0,),
+            SizedBox(height: defaultSize,),
             Text(
                 'Games Assemble!',
                 style: TextStyle(
@@ -82,7 +91,7 @@ class GameCard extends StatelessWidget {
                 ),
               textAlign: TextAlign.center,
               ),
-            SizedBox(height: 10.0,),
+            SizedBox(height: defaultSize * 1.5,),
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -107,12 +116,12 @@ class GameCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: defaultSize * 2.25,
                     child: Divider(
                       color : secondaryColor,
-                      height: 10,
-                      indent: 30,
-                      endIndent: 30,
+                      height: defaultSize,
+                      indent: defaultSize * 3.2,
+                      endIndent: defaultSize * 3.2,
                     ),
                   ),
                   Expanded(
@@ -136,11 +145,11 @@ class GameCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: defaultSize * 2.25,
                     child: Divider(
                       color : secondaryColor,
-                      indent: 30,
-                      endIndent: 30,
+                      indent: defaultSize * 3.2,
+                      endIndent: defaultSize *3.2,
                     ),
                   ),
                   Expanded(
@@ -165,7 +174,7 @@ class GameCard extends StatelessWidget {
                   )
                 ],
               ),
-            SizedBox(height: 10.0,),
+            SizedBox(height: defaultSize*1.5,),
             CustomAuthButton(
               pressFunction: (){},
               color: Color(0xff615dfa),
@@ -178,50 +187,3 @@ class GameCard extends StatelessWidget {
   }
 }
 
-class GamePageHeader extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Container(
-        height: 100,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          image: DecorationImage(
-            image: AssetImage('images/games-bg.png'),
-            fit: BoxFit.cover
-          )
-        ),
-        child:Row(
-          children: [
-            Image.asset("images/games-icon.png"),
-            SizedBox(width: 10.0,),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Games' ,
-                  style: TextStyle(
-                    fontFamily: 'Rajdhani',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
-                    color: Colors.white
-                  ),
-                ),
-                Text('Join Game and Enjoy!' ,
-                  style: TextStyle(
-                    fontFamily: 'Rajdhani',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0,
-                    color: Colors.white
-                  ),
-                )
-              ],
-            )
-          ],
-        )
-      ),
-    );
-  }
-}
