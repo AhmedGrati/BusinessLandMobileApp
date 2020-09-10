@@ -2,7 +2,6 @@
 import 'package:businessland_app/models/mode.dart';
 import 'package:businessland_app/state_management_blocks/mode_block.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../size_config.dart';
 import 'auth_stage.dart';
@@ -72,14 +71,16 @@ class _AuthScreenState extends State<AuthScreen>
                         ),
                       ),
                       Text('Welcome To'.toUpperCase(),
-                        style: GoogleFonts.titilliumWeb(
+                        style:TextStyle(
+                          fontFamily: 'TitiliumWeb',
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       Text('businessland'.toUpperCase(),
-                        style: GoogleFonts.titilliumWeb(
+                        style: TextStyle(
+                            fontFamily: 'TitiliumWeb',
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
                             fontSize: 40
@@ -99,7 +100,8 @@ class _AuthScreenState extends State<AuthScreen>
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     'Dark',
-                                    style: GoogleFonts.rajdhani(
+                                    style: TextStyle(
+                                      fontFamily: 'Rajdhani',
                                         color: Colors.white,
                                         fontSize: defaultSize*2,
                                         fontWeight: FontWeight.bold
@@ -120,7 +122,8 @@ class _AuthScreenState extends State<AuthScreen>
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     'Light',
-                                    style: GoogleFonts.rajdhani(
+                                    style: TextStyle(
+                                        fontFamily: 'Rajdhani',
                                         fontWeight: FontWeight.bold,
                                         fontSize: defaultSize*2
                                     ),
@@ -150,7 +153,8 @@ class _AuthScreenState extends State<AuthScreen>
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     'Register',
-                                    style: GoogleFonts.rajdhani(
+                                    style: TextStyle(
+                                        fontFamily: 'Rajdhani',
                                         color: modeBlock.secondaryColor,
                                         fontSize: defaultSize * 2,
                                         fontWeight: FontWeight.bold
@@ -172,7 +176,8 @@ class _AuthScreenState extends State<AuthScreen>
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     'Register',
-                                    style: GoogleFonts.rajdhani(
+                                    style: TextStyle(
+                                        fontFamily: 'Rajdhani',
                                         color: modeBlock.secondaryColor,
                                         fontSize: defaultSize * 2,
                                         fontWeight: FontWeight.bold
@@ -196,7 +201,8 @@ class _AuthScreenState extends State<AuthScreen>
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     'Login',
-                                    style: GoogleFonts.rajdhani(
+                                    style: TextStyle(
+                                        fontFamily: 'Rajdhani',
                                         color: modeBlock.secondaryColor,
                                         fontSize: defaultSize * 2,
                                         fontWeight: FontWeight.bold
@@ -218,7 +224,9 @@ class _AuthScreenState extends State<AuthScreen>
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     'Login',
-                                    style: GoogleFonts.rajdhani(
+                                    style: TextStyle(
+                                        fontFamily: 'Rajdhani',
+                                        color: modeBlock.secondaryColor,
                                         fontSize: defaultSize * 2,
                                         fontWeight: FontWeight.bold
                                     ),

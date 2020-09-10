@@ -3,7 +3,7 @@ import 'package:businessland_app/state_management_blocks/mode_block.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 import '../../../size_config.dart';
 import 'custom_auth_input.dart';
@@ -52,7 +52,8 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                         padding: const EdgeInsets.all(16.0),
                         child: Text('Reset password' ,
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.rajdhani(
+                          style: TextStyle(
+                              fontFamily: 'Rajdhani',
                               color: modeBlock.secondaryColor,
                               fontSize: 30.0,
                               fontWeight: FontWeight.w900
@@ -96,7 +97,8 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                               child: Row(
                                 children: [
                                   Text('Confirm' ,
-                                    style: GoogleFonts.rajdhani(
+                                    style: TextStyle(
+                                        fontFamily: 'Rajdhani',
                                         color: Colors.white,
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.w900
@@ -118,7 +120,8 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                               child: Row(
                                 children: [
                                   Text('Cancel' ,
-                                    style: GoogleFonts.rajdhani(
+                                    style: TextStyle(
+                                        fontFamily: 'Rajdhani',
                                         color: Colors.white,
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.w900
@@ -162,7 +165,8 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
             width: 12.0,
           ),
           Text(content ,
-            style: GoogleFonts.rajdhani(
+            style: TextStyle(
+                fontFamily: 'Rajdhani',
                 color: Colors.white
             ),
           ),
@@ -198,7 +202,8 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                   children: [
                     Text('Processing ...' ,
                       textAlign: TextAlign.end,
-                      style: GoogleFonts.rajdhani(
+                      style: TextStyle(
+                          fontFamily: 'Rajdhani',
                           color: Colors.white,
                           fontWeight: FontWeight.bold
                       ),

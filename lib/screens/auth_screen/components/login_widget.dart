@@ -7,7 +7,6 @@ import 'auth_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'custom_auth_button.dart';
 import 'custom_auth_input.dart';
@@ -43,7 +42,8 @@ class _LoginWidgetState extends State<LoginWidget> {
             width: 12.0,
           ),
           Text(content ,
-            style: GoogleFonts.rajdhani(
+            style: TextStyle(
+                fontFamily: 'Rajdhani',
               color: Colors.white
             ),
           ),
@@ -80,7 +80,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                   padding: const EdgeInsets.all(16.0),
                   child: Text('Account Login' ,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.rajdhani(
+                    style: TextStyle(
+                        fontFamily: 'Rajdhani',
                         color: modeBlock.secondaryColor,
                         fontSize: 30.0,
                         fontWeight: FontWeight.w900
@@ -90,6 +91,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
                   child: CustomAuthInput(
+                    textColor: modeBlock.secondaryColor,
                     fillColor: modeBlock.primaryColor,
                     labelText: "Email",
                     isObscure: false,
@@ -113,6 +115,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
                   child: CustomAuthInput(
+                    textColor: modeBlock.secondaryColor,
                     fillColor: modeBlock.primaryColor,
                     labelText: "Password",
                     isObscure: true,
@@ -143,7 +146,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                     },
                     child: Text(
                       'Forgot Password ?' ,
-                      style: GoogleFonts.rajdhani(
+                      style: TextStyle(
+                          fontFamily: 'Rajdhani',
                           color: Color(0xffADAFCA),
                           fontWeight: FontWeight.w900,
                           fontSize: 15.0
@@ -174,7 +178,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
                 Text('Login with your Social Account' ,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.rajdhani(
+                  style: TextStyle(
+                      fontFamily: 'Rajdhani',
                       color: modeBlock.secondaryColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 12.0

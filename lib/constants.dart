@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
 
-Color kPrimaryLightModeColor = Colors.white;
+Color kPrimaryLightModeColor = Color(0xfff4f4f9);
 Color kSecondaryLightModeColor = Color(0xff1D2333);
 Color kButtonLightModeColor = Color(0xff615dfa);
+Color kCardColorLightModeColor = Colors.white;
 
-Color kPrimaryDarkModeColor = Color(0xff1D2333);
+Color kPrimaryDarkModeColor = Color(0xff161b27);
+Color kCardColorDarkModeColor = Color(0xff1d2333);
 Color kSecondaryDarkModeColor = Colors.white;
 Color kButtonDarkModeColor = Color(0xff7750F8);
 

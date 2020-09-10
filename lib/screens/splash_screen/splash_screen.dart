@@ -1,6 +1,6 @@
 import 'package:businessland_app/screens/auth_screen/auth_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 import '../../size_config.dart';
 class SplashScreen extends StatefulWidget {
@@ -48,7 +48,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text('Welcome to'.toUpperCase() ,
-                  style: GoogleFonts.titilliumWeb(
+                  style: TextStyle(
+                      fontFamily: 'TitiliumWeb',
                     color: Colors.white,
                     fontWeight: FontWeight.w300,
                     fontSize: defaultSize * 2.8
@@ -58,7 +59,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text('Businessland'.toUpperCase() ,
-                  style: GoogleFonts.titilliumWeb(
+                  style: TextStyle(
+                      fontFamily: 'TitiliumWeb',
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: defaultSize * 5

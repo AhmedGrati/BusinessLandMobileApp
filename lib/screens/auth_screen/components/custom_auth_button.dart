@@ -1,6 +1,5 @@
 import 'package:businessland_app/state_management_blocks/mode_block.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 class CustomAuthButton extends StatelessWidget {
   final String buttonContent;
@@ -24,7 +23,8 @@ class CustomAuthButton extends StatelessWidget {
             child: Text(
               buttonContent,
               textAlign: TextAlign.center,
-              style: GoogleFonts.rajdhani(
+              style: TextStyle(
+                  fontFamily: 'Rajdhani',
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 15.0

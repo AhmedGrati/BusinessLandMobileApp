@@ -3,10 +3,11 @@ import 'package:businessland_app/models/mode.dart';
 import 'package:flutter/material.dart';
 class ModeBlock extends ChangeNotifier{
 
-  Mode _mode = Mode.light;
-  Color primaryColor = kPrimaryLightModeColor;
-  Color secondaryColor = kSecondaryLightModeColor;
-  Color buttonColor = kButtonLightModeColor;
+  Mode _mode = Mode.dark;
+  Color primaryColor = kPrimaryDarkModeColor;
+  Color secondaryColor = kSecondaryDarkModeColor;
+  Color buttonColor = kButtonDarkModeColor;
+  Color cardColor = kCardColorDarkModeColor;
   Mode get mode => _mode;
 
   set mode(Mode m) {
@@ -15,14 +16,17 @@ class ModeBlock extends ChangeNotifier{
   }
 
   void changeMode(Mode m) {
+    _mode = m;
     if(m == Mode.light) {
       primaryColor = kPrimaryLightModeColor;
       secondaryColor = kSecondaryLightModeColor;
       buttonColor = kButtonLightModeColor;
+      cardColor = kCardColorLightModeColor;
     }else{
       primaryColor = kPrimaryDarkModeColor;
       secondaryColor = kSecondaryDarkModeColor;
       buttonColor = kButtonDarkModeColor;
+      cardColor = kCardColorDarkModeColor;
     }
   }
 

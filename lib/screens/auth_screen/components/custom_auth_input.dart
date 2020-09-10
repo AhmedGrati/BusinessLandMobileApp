@@ -1,10 +1,11 @@
 import 'package:businessland_app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 class CustomAuthInput extends StatelessWidget {
-  CustomAuthInput({@required this.labelText , this.isObscure , this.inputType , this.validator , this.saveFunction , this.changeFunction , this.fillColor});
+  CustomAuthInput({@required this.labelText , this.isObscure , this.inputType , this.validator , this.saveFunction , this.changeFunction , this.fillColor , this.textColor});
   final String labelText;
   final bool isObscure;
+  final Color textColor;
   final Color fillColor;
   final TextInputType inputType;
   final Function validator;
@@ -13,8 +14,9 @@ class CustomAuthInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: GoogleFonts.rajdhani(
-          color: Colors.white,
+      style: TextStyle(
+        fontFamily: 'Rajdhani',
+          color: textColor,
           fontSize: 15.0,
           fontWeight: FontWeight.bold
       ),

@@ -14,8 +14,6 @@ import 'custom_auth_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 
 import 'custom_auth_button.dart';
 
@@ -56,7 +54,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   padding: const EdgeInsets.all(16.0),
                   child: Text('Create your Account!' ,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.rajdhani(
+                    style: TextStyle(
+                        fontFamily: 'Rajdhani',
                         color: modeBlock.secondaryColor,
                         fontSize: 30.0,
                         fontWeight: FontWeight.w900
@@ -66,6 +65,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
                   child: CustomAuthInput(
+                    textColor: modeBlock.secondaryColor,
                     fillColor: modeBlock.primaryColor,
                     labelText: "First Name",
                     isObscure: false,
@@ -84,7 +84,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
                   child: CustomAuthInput(
-
+                    textColor: modeBlock.secondaryColor,
                     fillColor: modeBlock.primaryColor,
                     labelText: "Last Name",
                     isObscure: false,
@@ -103,6 +103,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
                   child: CustomAuthInput(
+                    textColor: modeBlock.secondaryColor,
                     fillColor: modeBlock.primaryColor,
                     labelText: "Email",
                     isObscure: false,
@@ -127,6 +128,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
                   child: CustomAuthInput(
+                    textColor: modeBlock.secondaryColor,
                     fillColor: modeBlock.primaryColor,
                     labelText: "Username",
                     isObscure: false,
@@ -145,6 +147,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
                   child: CustomAuthInput(
+                    textColor: modeBlock.secondaryColor,
                     fillColor: modeBlock.primaryColor,
                     labelText: "Age",
                     isObscure: false,
@@ -166,6 +169,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
                   child: CustomAuthInput(
+                    textColor: modeBlock.secondaryColor,
                     fillColor: modeBlock.primaryColor,
                     labelText: "Password",
                     isObscure: true,
@@ -190,6 +194,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
                   child: CustomAuthInput(
+                    textColor: modeBlock.secondaryColor,
                     fillColor: modeBlock.primaryColor,
                     labelText: "Password confirmation",
                     isObscure: true,
@@ -220,7 +225,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text('Gender :' ,
-                        style: GoogleFonts.rajdhani(
+                        style: TextStyle(
+                            fontFamily: 'Rajdhani',
                             color: Colors.white,
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold
@@ -228,7 +234,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                       ),
                       ListTile(
                         title:  Text('Male' ,
-                          style: GoogleFonts.rajdhani(
+                          style: TextStyle(
+                              fontFamily: 'Rajdhani',
                               color: modeBlock.secondaryColor,
                               fontSize: 15.0,
                               fontWeight: FontWeight.bold
@@ -247,7 +254,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                       ),
                       ListTile(
                         title:  Text('Female' , style:
-                        GoogleFonts.rajdhani(
+                        TextStyle(
+                            fontFamily: 'Rajdhani',
                             color: modeBlock.secondaryColor,
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold
@@ -301,7 +309,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 ),
                 Text('Register with your Social Account' ,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.rajdhani(
+                  style: TextStyle(
+                      fontFamily: 'Rajdhani',
                       color: modeBlock.secondaryColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 12.0
@@ -351,7 +360,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
             width: 12.0,
           ),
           Text(content ,
-            style: GoogleFonts.rajdhani(
+            style: TextStyle(
+                fontFamily: 'Rajdhani',
                 color: Colors.white
             ),
           ),
