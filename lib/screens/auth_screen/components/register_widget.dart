@@ -1,8 +1,9 @@
+import 'package:businessland_app/models/api_response.dart';
 import 'package:businessland_app/models/gender.dart';
 import 'package:businessland_app/models/login_model.dart';
 import 'package:businessland_app/models/user.dart';
-import 'package:businessland_app/screens/home_screen/home_screen.dart';
 import 'package:businessland_app/services/user_service.dart';
+import 'package:businessland_app/state_management_blocks/blocs/register_bloc/register_bloc.dart';
 import 'package:businessland_app/state_management_blocks/mode_block.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_it/get_it.dart';
@@ -29,16 +30,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
 
   GlobalKey<FormState> _key = GlobalKey<FormState>();
   double defaultSize = SizeConfig.defaultSize;
-  String _email;
-  String _password;
-  String _firstName;
-  String _lastName;
-  int _age;
-  String _passwordConfirmation;
-  String _username;
   @override
   Widget build(BuildContext context) {
     fToast = FToast(context);
+    final RegisterValidationBloc registerValidationBloc = RegisterValidationBloc();
     return  Consumer<ModeBlock>(
       builder: (context , modeBlock , children) {
         return AuthCardWidget(
@@ -64,158 +59,116 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 ),
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                  child: CustomAuthInput(
-                    textColor: modeBlock.secondaryColor,
-                    fillColor: modeBlock.primaryColor,
-                    labelText: "First Name",
-                    isObscure: false,
-                    inputType: TextInputType.text,
-                    validator: (String value) {
-                      if(value.isEmpty) {
-                        return 'First Name is required';
-                      }
-                      return null;
-                    },
-                    saveFunction: (String value) {
-                      _firstName = value;
-                    },
+                  child: StreamBuilder<String>(
+                    stream: registerValidationBloc.firstName,
+                    builder: (context , snapshot) {
+                      return CustomAuthInput(
+                        textColor: modeBlock.secondaryColor,
+                        fillColor: modeBlock.primaryColor,
+                        changeFunction: registerValidationBloc.firstNameChanged,
+                        labelText: "First Name",
+                        isObscure: false,
+                        errorText: snapshot.error,
+                      );
+                    }
                   ),
                 ),
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                  child: CustomAuthInput(
-                    textColor: modeBlock.secondaryColor,
-                    fillColor: modeBlock.primaryColor,
-                    labelText: "Last Name",
-                    isObscure: false,
-                    inputType: TextInputType.text,
-                    validator: (String value) {
-                      if(value.isEmpty) {
-                        return 'Last Name is required';
+                  child: StreamBuilder<String>(
+                      stream: registerValidationBloc.lastName,
+                      builder: (context , snapshot) {
+                        return CustomAuthInput(
+                          changeFunction: registerValidationBloc.lastNameChanged,
+                          textColor: modeBlock.secondaryColor,
+                          fillColor: modeBlock.primaryColor,
+                          labelText: "Last Name",
+                          isObscure: false,
+                          errorText: snapshot.error,
+                        );
                       }
-                      return null;
-                    },
-                    saveFunction: (String value) {
-                      _lastName = value;
-                    },
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                  child: CustomAuthInput(
-                    textColor: modeBlock.secondaryColor,
-                    fillColor: modeBlock.primaryColor,
-                    labelText: "Email",
-                    isObscure: false,
-                    inputType: TextInputType.emailAddress,
-                    validator: (String value) {
-                      if(value.isEmpty) {
-                        return 'Email is required';
+                  child: StreamBuilder<String>(
+                      stream: registerValidationBloc.email,
+                      builder: (context , snapshot) {
+                        return CustomAuthInput(
+                          inputType: TextInputType.emailAddress,
+                          textColor: modeBlock.secondaryColor,
+                          fillColor: modeBlock.primaryColor,
+                          labelText: "Email",
+                          isObscure: false,
+                          errorText: snapshot.error,
+                          changeFunction: registerValidationBloc.emailChanged,
+                        );
                       }
-                      if (!RegExp(
-                          r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                          .hasMatch(value)) {
-                        return 'Please enter a valid email Address';
-                      }
-                      return null;
-                    },
-                    saveFunction: (String value) {
-                      _email = value;
-                    },
                   ),
                 ),
 
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                  child: CustomAuthInput(
-                    textColor: modeBlock.secondaryColor,
-                    fillColor: modeBlock.primaryColor,
-                    labelText: "Username",
-                    isObscure: false,
-                    inputType: TextInputType.text,
-                    validator: (String value) {
-                      if(value.isEmpty) {
-                        return 'Username is required';
+                  child: StreamBuilder<String>(
+                      stream: registerValidationBloc.username,
+                      builder: (context , snapshot) {
+                        return CustomAuthInput(
+                          textColor: modeBlock.secondaryColor,
+                          fillColor: modeBlock.primaryColor,
+                          labelText: "Username",
+                          isObscure: false,
+                          errorText: snapshot.error,
+                          changeFunction: registerValidationBloc.usernameChanged,
+                        );
                       }
-                      return null;
-                    },
-                    saveFunction: (String value) {
-                      _username = value;
-                    },
                   ),
                 ),
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                  child: CustomAuthInput(
-                    textColor: modeBlock.secondaryColor,
-                    fillColor: modeBlock.primaryColor,
-                    labelText: "Age",
-                    isObscure: false,
-                    inputType: TextInputType.number,
-                    validator: (String value) {
-                      if(value.isEmpty) {
-                        return 'Age is required';
+                  child: StreamBuilder<int>(
+                      stream: registerValidationBloc.age,
+                      builder: (context , snapshot) {
+                        return CustomAuthInput(
+                          textColor: modeBlock.secondaryColor,
+                          fillColor: modeBlock.primaryColor,
+                          labelText: "Age",
+                          isObscure: false,
+                          errorText: snapshot.error,
+                          changeFunction: registerValidationBloc.ageChanged,
+                        );
                       }
-                      if(int.parse(value) < 12 && int.parse(value) > 80) {
-                        return 'Age should be between 12 and 80';
-                      }
-                      return null;
-                    },
-                    saveFunction: (String value) {
-                      _age = int.parse(value);
-                    },
                   ),
                 ),
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                  child: CustomAuthInput(
-                    textColor: modeBlock.secondaryColor,
-                    fillColor: modeBlock.primaryColor,
-                    labelText: "Password",
-                    isObscure: true,
-                    inputType: TextInputType.text,
-                    validator: (String value) {
-                      if(value.isEmpty) {
-                        return 'Password is required';
+                  child:StreamBuilder<String>(
+                      stream: registerValidationBloc.password,
+                      builder: (context , snapshot) {
+                        return CustomAuthInput(
+                          textColor: modeBlock.secondaryColor,
+                          fillColor: modeBlock.primaryColor,
+                          labelText: "Password",
+                          isObscure: true,
+                          errorText: snapshot.error,
+                          changeFunction: registerValidationBloc.passwordChanged,
+                        );
                       }
-                      if(value.length < 5) {
-                        return 'Password should have at least 5 characters';
-                      }
-                      return null;
-                    },
-                    saveFunction: (String value) {
-                      _password = value;
-                    },
-                    changeFunction: (String value) {
-                      _password = value;
-                    },
                   ),
                 ),
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                  child: CustomAuthInput(
-                    textColor: modeBlock.secondaryColor,
-                    fillColor: modeBlock.primaryColor,
-                    labelText: "Password confirmation",
-                    isObscure: true,
-                    inputType: TextInputType.text,
-                    validator: (String value) {
-                      if(value.isEmpty) {
-                        return 'Password confirmation is required';
+                  child: StreamBuilder<String>(
+                      stream: registerValidationBloc.passwordConfirmation,
+                      builder: (context , snapshot) {
+                        return CustomAuthInput(
+                          textColor: modeBlock.secondaryColor,
+                          fillColor: modeBlock.primaryColor,
+                          labelText: "Password confirmation",
+                          isObscure: true,
+                          errorText: snapshot.error,
+                          changeFunction: registerValidationBloc.passwordConfirmationChanged,
+                        );
                       }
-                      if(value != _password) {
-                        print(value);
-                        print(_password);
-                        return 'Password confirmation should match';
-                      }
-                      return null;
-                    },
-                    saveFunction: (String value) {
-                      _passwordConfirmation = value;
-                    },
-                    changeFunction: (String value) {
-                      _passwordConfirmation = value;
-                    },
                   ),
                 ),
 
@@ -227,7 +180,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                       Text('Gender :' ,
                         style: TextStyle(
                             fontFamily: 'Rajdhani',
-                            color: Colors.white,
+                            color: modeBlock.secondaryColor,
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold
                         ),
@@ -275,28 +228,15 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     ],
                   ),
                 ),
-                CustomAuthButton(
-                  color: modeBlock.buttonColor,
-                  buttonContent: "Register Now!",
-                  pressFunction: (){
-                    if(!_key.currentState.validate()) {
-                      print('not validated');
-                      return;
-                    }
-                    _key.currentState.save();
-
-                    User user = User(
-                      gender: _gender,
-                      username: _username,
-                      email: _email,
-                      age: _age,
-                      password: _password,
-                      firstName: _firstName,
-                      lastName: _lastName,
+                StreamBuilder<bool>(
+                  stream: registerValidationBloc.submitRegisterCheck,
+                  builder: (context,snapshot) {
+                    return CustomAuthButton(
+                      color: modeBlock.buttonColor,
+                      buttonContent: "Register Now!",
+                      pressFunction: snapshot.hasData ? () => registerUser(registerValidationBloc, _gender) : null
                     );
-                    print(user.username);
-                    this.registerUser(user);
-                  },
+                  }
                 ),
                 SizedBox(
                   width: defaultSize * 12,
@@ -375,11 +315,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
       toastDuration: Duration(seconds: 2),
     );
   }
-  void loginUser() async {
-    final result = await this.userService.login(LoginModel(
-        email: _email,
-        password: _password
-    ));
+  void loginUser(RegisterValidationBloc registerBloc) async {
+    final result = await registerBloc.loginAfterRegister();
     if(!result.error) {
       Navigator.of(context).pushNamed('/home');
     }else{
@@ -387,15 +324,16 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     }
   }
 
-  void registerUser(User user) async {
-    final result = await this.userService.registerUser(user);
+  void registerUser(RegisterValidationBloc registerBloc , Gender gender) async {
+
+    final ApiResponse<bool> result = await registerBloc.register(gender);
     if(!result.error) {
       _showToast(
           "Added successfully!",
           Colors.green,
           Icons.check,
       );
-      loginUser();
+      loginUser(registerBloc);
     }else{
       _showToast(
           "${result.errorMessage}",

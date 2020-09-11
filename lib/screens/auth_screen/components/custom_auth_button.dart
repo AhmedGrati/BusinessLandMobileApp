@@ -9,30 +9,32 @@ class CustomAuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-      decoration: BoxDecoration(
-          color: this.color,
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0)
-      ),
-      child:ClipRRect(
-        borderRadius: BorderRadius.circular(20.0),
-        child: FlatButton(
-          disabledColor: Colors.grey,
-          onPressed: pressFunction,
-            child: Text(
-              buttonContent,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: 'Rajdhani',
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15.0
-              ),
-            ),
-
         ),
-      ),
+        child: FlatButton(
+              color: Color(0xff615dfa),
+              disabledColor: Colors.grey,
+              onPressed: pressFunction,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    buttonContent,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: 'Rajdhani',
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0
+                    ),
+                  ),
+                ),
+
+            ),
+          )
     );
   }
 }

@@ -1,8 +1,11 @@
+import 'package:businessland_app/models/api_response.dart';
 import 'package:businessland_app/models/login_model.dart';
+import 'package:businessland_app/models/user.dart';
 import 'package:businessland_app/screens/auth_screen/components/reset_password_dialog.dart';
 import 'package:businessland_app/screens/home_screen/home_screen.dart';
 import 'package:businessland_app/services/user_service.dart';
 import 'package:businessland_app/size_config.dart';
+import 'package:businessland_app/state_management_blocks/blocs/login_bloc/login_validation_bloc.dart';
 import 'auth_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -64,9 +67,9 @@ class _LoginWidgetState extends State<LoginWidget> {
     fToast = FToast(context);
     double defaultSize = SizeConfig.defaultSize;
 
-
+    final loginBloc = LoginValidationBloc();
     return  Consumer<ModeBlock>(
-      builder: (context , modeBlock , children) {
+    builder: (context , modeBlock , children) {
         return AuthCardWidget(
           color: modeBlock.primaryColor,
           height: defaultSize*60,
@@ -90,48 +93,36 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                  child: CustomAuthInput(
-                    textColor: modeBlock.secondaryColor,
-                    fillColor: modeBlock.primaryColor,
-                    labelText: "Email",
-                    isObscure: false,
-                    inputType: TextInputType.emailAddress,
-                    validator: (String value) {
-                      if(value.isEmpty) {
-                        return 'Email is required';
-                      }
-                      if (!RegExp(
-                          r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                          .hasMatch(value)) {
-                        return 'Please enter a valid email Address';
-                      }
-                      return null;
-                    },
-                    saveFunction: (String value) {
-                      _email = value;
-                    },
+                  child: StreamBuilder<String>(
+                    stream: loginBloc.email,
+                    builder: (context , snapshot) {
+                      return CustomAuthInput(
+                        errorText: snapshot.error,
+                        changeFunction: loginBloc.emailChanged,
+                        textColor: modeBlock.secondaryColor,
+                        fillColor: modeBlock.primaryColor,
+                        labelText: "Email",
+                        isObscure: false,
+                        inputType: TextInputType.emailAddress,
+                      );
+                    }
                   ),
                 ),
                 Padding(
                   padding:const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
-                  child: CustomAuthInput(
-                    textColor: modeBlock.secondaryColor,
-                    fillColor: modeBlock.primaryColor,
-                    labelText: "Password",
-                    isObscure: true,
-                    inputType: TextInputType.text,
-                    validator: (String value) {
-                      if(value.isEmpty) {
-                        return 'Password is required';
-                      }
-                      if(value.length < 5) {
-                        return 'Password should have at least 5 characters';
-                      }
-                      return null;
-                    },
-                    saveFunction: (String value) {
-                      _password = value;
-                    },
+                  child: StreamBuilder<String>(
+                    stream: loginBloc.password,
+                    builder: (context , snapshot) {
+                      return  CustomAuthInput(
+                        errorText: snapshot.error,
+                        changeFunction: loginBloc.passwordChanged,
+                        textColor: modeBlock.secondaryColor,
+                        fillColor: modeBlock.primaryColor,
+                        labelText: "Password",
+                        isObscure: true,
+                        inputType: TextInputType.text,
+                      );
+                    }
                   ),
                 ),
                 Padding(
@@ -155,17 +146,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                     ),
                   ),
                 ),
-                CustomAuthButton(
-                  color: modeBlock.buttonColor,
-                  buttonContent: "Login to your Account!",
-                  pressFunction:() async {
-                    if(!_key.currentState.validate()) {
-                      print('not validated');
-                      return;
-                    }
-                    _key.currentState.save();
-                    loginUser();
-                  },
+                StreamBuilder<bool>(
+                  stream: loginBloc.submitLoginCheck,
+                  builder: (context , snapshot) {
+                    return CustomAuthButton(
+                      color: modeBlock.buttonColor,
+                      buttonContent: "Login to your Account!",
+                      pressFunction: snapshot?.hasData ? () => loginUser(loginBloc) :null
+                    );
+                 },
                 ),
                 SizedBox(
                   width: defaultSize * 12,
@@ -214,11 +203,8 @@ class _LoginWidgetState extends State<LoginWidget> {
     );
   }
 
-  void loginUser() async {
-    final result = await this.userService.login(LoginModel(
-        email: _email,
-        password: _password
-    ));
+  void loginUser(LoginValidationBloc loginBloc) async {
+    ApiResponse<User> result = await loginBloc.login();
     if(!result.error) {
       _showToast(
           "Login Attempted Successfully",
@@ -227,7 +213,6 @@ class _LoginWidgetState extends State<LoginWidget> {
       );
       Navigator.of(context).pushNamed('/home');
     }else{
-      print('false data');
       _showToast(
           "${result.errorMessage}",
           Colors.red,

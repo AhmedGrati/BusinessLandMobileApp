@@ -2,12 +2,13 @@ import 'package:businessland_app/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomAuthInput extends StatelessWidget {
-  CustomAuthInput({@required this.labelText , this.isObscure , this.inputType , this.validator , this.saveFunction , this.changeFunction , this.fillColor , this.textColor});
+  CustomAuthInput({@required this.labelText , this.isObscure , this.inputType , this.validator , this.saveFunction , this.changeFunction , this.fillColor , this.textColor , this.errorText});
   final String labelText;
   final bool isObscure;
   final Color textColor;
   final Color fillColor;
   final TextInputType inputType;
+  final String errorText;
   final Function validator;
   final Function saveFunction;
   final Function changeFunction;
@@ -23,6 +24,7 @@ class CustomAuthInput extends StatelessWidget {
       keyboardType: inputType,
       obscureText: this.isObscure,
       decoration: kAuthTextFieldsDecoration.copyWith(
+        errorText: this.errorText,
         fillColor: this.fillColor,
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(
