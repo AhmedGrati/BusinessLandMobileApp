@@ -211,7 +211,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           Colors.green,
           Icons.check
       );
-      Navigator.of(context).pushNamed('/home');
+      Navigator.of(context).pushReplacementNamed('/home');
     }else{
       _showToast(
           "${result.errorMessage}",

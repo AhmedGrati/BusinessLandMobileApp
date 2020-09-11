@@ -318,7 +318,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   void loginUser(RegisterValidationBloc registerBloc) async {
     final result = await registerBloc.loginAfterRegister();
     if(!result.error) {
-      Navigator.of(context).pushNamed('/home');
+      Navigator.of(context).pushReplacementNamed('/home');
     }else{
       print('false data');
     }
