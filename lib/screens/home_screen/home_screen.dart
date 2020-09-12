@@ -47,6 +47,14 @@ class _HomeScreenState extends State<HomeScreen> {
             currentIndex: activePageProvider.pageIndex,
             backgroundColor: Color(0xff615dfa),
             type: BottomNavigationBarType.fixed,
+            onTap: (int index) {
+              _pageController.animateToPage(
+                  index,
+                  duration: Duration(microseconds: 2500),
+                  curve: Curves.ease
+              );
+              activePageProvider.pageIndex = index;
+            },
             items: [
               BottomNavigationBarItem(
                 icon: Icon(
