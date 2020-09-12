@@ -8,6 +8,7 @@ class ModeBlock extends ChangeNotifier{
   Color secondaryColor = kSecondaryDarkModeColor;
   Color buttonColor = kButtonDarkModeColor;
   Color cardColor = kCardColorDarkModeColor;
+  Color selectedPageColor = kSelectedPageDarkModeColor;
   Mode get mode => _mode;
 
   set mode(Mode m) {
@@ -22,11 +23,13 @@ class ModeBlock extends ChangeNotifier{
       secondaryColor = kSecondaryLightModeColor;
       buttonColor = kButtonLightModeColor;
       cardColor = kCardColorLightModeColor;
+      selectedPageColor = kSelectedPageLightModeColor;
     }else{
       primaryColor = kPrimaryDarkModeColor;
       secondaryColor = kSecondaryDarkModeColor;
       buttonColor = kButtonDarkModeColor;
       cardColor = kCardColorDarkModeColor;
+      selectedPageColor = kSelectedPageDarkModeColor;
     }
   }
 
