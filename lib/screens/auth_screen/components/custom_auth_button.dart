@@ -17,7 +17,9 @@ class CustomAuthButton extends StatelessWidget {
         ),
         child: FlatButton(
               color: Color(0xff615dfa),
-              disabledColor: Colors.grey,
+              disabledColor: Colors.grey[100],
+              textColor: Colors.white,
+              disabledTextColor: Colors.grey[700],
               onPressed: pressFunction,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -26,7 +28,6 @@ class CustomAuthButton extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: 'Rajdhani',
-                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 15.0
                     ),

@@ -51,7 +51,7 @@ class _AuthScreenState extends State<AuthScreen>
           body: SafeArea(
             child: SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.all(16),
+
                   width: MediaQuery
                       .of(context)
                       .size
@@ -86,54 +86,54 @@ class _AuthScreenState extends State<AuthScreen>
                             fontSize: 40
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              child: FlatButton(
-                                onPressed: () {
-                                  modeBlock.mode = Mode.dark;
-                                },
-                                color: Color(0xff1D2333),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Text(
-                                    'Dark',
-                                    style: TextStyle(
-                                      fontFamily: 'Rajdhani',
-                                        color: Colors.white,
-                                        fontSize: defaultSize*2,
-                                        fontWeight: FontWeight.bold
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: FlatButton(
-                                onPressed: () {
-                                  modeBlock.mode = Mode.light;
-                                },
-                                color: Color(0xffffffff),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Text(
-                                    'Light',
-                                    style: TextStyle(
-                                        fontFamily: 'Rajdhani',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: defaultSize*2
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+//                      Row(
+//                        mainAxisAlignment: MainAxisAlignment.center,
+//                        children: <Widget>[
+//                          Expanded(
+//                            child: Container(
+//                              child: FlatButton(
+//                                onPressed: () {
+//                                  modeBlock.mode = Mode.dark;
+//                                },
+//                                color: Color(0xff1D2333),
+//                                child: Padding(
+//                                  padding: const EdgeInsets.all(16.0),
+//                                  child: Text(
+//                                    'Dark',
+//                                    style: TextStyle(
+//                                      fontFamily: 'Rajdhani',
+//                                        color: Colors.white,
+//                                        fontSize: defaultSize*2,
+//                                        fontWeight: FontWeight.bold
+//                                    ),
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
+//                          ),
+//                          Expanded(
+//                            child: Container(
+//                              child: FlatButton(
+//                                onPressed: () {
+//                                  modeBlock.mode = Mode.light;
+//                                },
+//                                color: Color(0xffffffff),
+//                                child: Padding(
+//                                  padding: const EdgeInsets.all(16.0),
+//                                  child: Text(
+//                                    'Light',
+//                                    style: TextStyle(
+//                                        fontFamily: 'Rajdhani',
+//                                        fontWeight: FontWeight.bold,
+//                                        fontSize: defaultSize*2
+//                                    ),
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
+//                          ),
+//                        ],
+//                      ),
                       SizedBox(
                         height: defaultSize,
                       ),

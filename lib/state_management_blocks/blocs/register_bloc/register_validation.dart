@@ -3,7 +3,7 @@ import 'dart:async';
 mixin RegisterValidaton {
   var emailValidator = StreamTransformer<String,String>.fromHandlers(
       handleData: (email,sink) {
-        if(RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?").hasMatch(email)) {
+        if(RegExp(r"/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;").hasMatch(email)) {
           sink.add(email);
         }else{
           sink.addError("Invalid Address Email.");
@@ -22,30 +22,30 @@ mixin RegisterValidaton {
 
   var firstNameValidator = StreamTransformer<String,String>.fromHandlers(
       handleData: (value , sink)  {
-        if(value.length > 2) {
+        if(value.length >= 2) {
           sink.add(value);
         }else{
-          sink.addError("First Name should be greater than 2.");
+          sink.addError("First Name should be greater than 1.");
         }
       }
   );
 
   var lastNameValidator = StreamTransformer<String,String>.fromHandlers(
       handleData: (value , sink)  {
-        if(value.length > 2) {
+        if(value.length >= 2) {
           sink.add(value);
         }else{
-          sink.addError("Last Name should be greater than 2.");
+          sink.addError("Last Name should be greater than 1.");
         }
       }
   );
 
   var usernameValidator = StreamTransformer<String,String>.fromHandlers(
       handleData: (value , sink)  {
-        if(value.length > 2) {
+        if(value.length >= 2) {
           sink.add(value);
         }else{
-          sink.addError("Username should be greater than 2.");
+          sink.addError("Username should be greater than 1.");
         }
       }
   );

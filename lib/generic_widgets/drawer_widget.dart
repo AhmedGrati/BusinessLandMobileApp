@@ -1,20 +1,27 @@
-import 'package:businessland_app/screens/auth_screen/components/custom_auth_button.dart';
 import 'package:businessland_app/state_management_blocks/active_page_provider.dart';
 import 'package:businessland_app/state_management_blocks/mode_block.dart';
-import 'package:custom_switch/custom_switch.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:businessland_app/models/mode.dart';
 import 'package:businessland_app/size_config.dart';
 class DrawerWidget extends StatelessWidget {
-  final List<String> pagesName = ['Games', 'Chat', 'Notifications', 'Settings'];
+  final List<String> pagesName = ['Games',
+    'Chat',
+    'Notifications',
+    'Settings' ,
+    'Logout'
+  ];
   final List<IconData> pagesIcon = [
     Icons.videogame_asset,
     Icons.chat,
     Icons.notifications_active,
-    Icons.settings
+    Icons.settings,
+    Icons.exit_to_app
   ];
 
   final PageController pageController;
@@ -37,10 +44,9 @@ class DrawerWidget extends StatelessWidget {
                 height: 170,
                 child: DrawerHeader(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -69,24 +75,47 @@ class DrawerWidget extends StatelessWidget {
                               ),
                             ],
                           ),
-                          CustomSwitch(
-                            value: modeBlock.mode == Mode.light,
-                            activeColor: Colors.green,
-                            onChanged: (value) {
-                              if (modeBlock.mode == Mode.dark) {
-                                modeBlock.mode = Mode.light;
-                              } else {
-                                modeBlock.mode = Mode.dark;
-                              }
-                            },
-                          ),
                         ],
                       ),
-                      CustomAuthButton(
-                        pressFunction: () {},
-                        buttonContent: "Logout",
-                        color: Color(0xff615dfa),
-                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top:12.0),
+                        child: FlutterSwitch(
+                          activeText: 'Dark',
+                          inactiveText: 'Light',
+                          activeTextColor: Colors.white,
+                          inactiveTextColor: Colors.white,
+                          inactiveColor: Color(0xff615dfa),
+                          showOnOff: true,
+                          value: modeBlock.mode == Mode.dark,
+                          width: 100,
+                          onToggle: (bool value) {
+                            if (modeBlock.mode == Mode.dark) {
+                              modeBlock.mode = Mode.light;
+                            } else {
+                              modeBlock.mode = Mode.dark;
+                            }
+                          }
+                        ),
+//                        child: LiteRollingSwitch(
+//                          //initial value
+//                          value: modeBlock.mode == Mode.light,
+//                          textOn: 'Dark',
+//                          textOff: 'Light',
+//                          colorOn: Color(0xff615dfa),
+//                          colorOff: Color(0xff615dfa),
+//                          iconOn: FontAwesomeIcons.moon,
+//                          iconOff: FontAwesomeIcons.sun,
+//                          textSize: 16.0,
+//                          onChanged: (bool state) {
+//                            if (modeBlock.mode == Mode.dark) {
+//                              modeBlock.mode = Mode.light;
+//                            } else {
+//                              modeBlock.mode = Mode.dark;
+//                            }
+//                            print('Current State of SWITCH IS: $state');
+//                          },
+//                        ),
+                      )
                     ],
                   ),
                 ),
@@ -104,19 +133,25 @@ class DrawerWidget extends StatelessWidget {
                         pageIndex: index,
                         activePageIndex: activePageProvider.pageIndex,
                         onTapFunction: () {
-                          Navigator.pop(context);
-                          pageController.animateToPage(
-                              index,
-                              duration: Duration(microseconds: 2500),
-                              curve: Curves.ease
-                          );
-                          activePageProvider.pageIndex = index;
+
+                          // if it's not logout
+                          if(index != this.pagesName.length-1) {
+                            Navigator.pop(context);
+                            pageController.animateToPage(
+                                index,
+                                duration: Duration(microseconds: 2500),
+                                curve: Curves.ease
+                            );
+                            activePageProvider.pageIndex = index;
+                          }else{// logout
+                            Navigator.pushReplacementNamed(context,'/auth');
+                          }
                         },
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) =>
                         SizedBox(),
-                    itemCount: 4),
+                    itemCount: 5),
               ),
             ],
           ),
